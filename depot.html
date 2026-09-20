@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>E-Transfert — Dépôt</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: #333;
+}
+
+.header {
+    background: #111;
+    color: #f5b400;
+    text-align: center;
+    padding: 25px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 650px;
+    margin: 45px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+h1 {
+    text-align: center;
+}
+
+.intro {
+    text-align: center;
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.notice {
+    background: #fff4cc;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+label {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 16px;
+    border: none;
+    border-radius: 7px;
+    background: #159447;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #117b3b;
+}
+
+.message {
+    margin-top: 18px;
+    text-align: center;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    E-Transfert
+</div>
+
+<div class="container">
+
+    <h1>Déposer les fonds</h1>
+
+    <p class="intro">
+        Veuillez renseigner les informations demandées.
+    </p>
+
+    <div class="notice">
+        Démonstration uniquement : cette page ne demande aucune
+        information bancaire.
+    </div>
+
+    <form id="formulaire">
+
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" required>
+
+        <label for="prenom">Prénom</label>
+        <input type="text" id="prenom" required>
+
+        <label for="profession">Profession</label>
+        <input type="text" id="profession" required>
+
+        <button type="submit">
+            Continuer
+        </button>
+
+    </form>
+
+    <div class="message" id="message"></div>
+
+</div>
+
+<script>
+
+const SUPABASE_URL =
+    "https://eokwnhtuveojoxrpytdv.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_K_3CUhqGng7mYO0NZKQQvA_1Aaf57Tx";
+
+
+document.getElementById("formulaire").addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+        const message =
+            document.getElementById("message");
+
+        const nom =
+            document.getElementById("nom").value.trim();
+
+        const prenom =
+            document.getElementById("prenom").value.trim();
+
+        const profession =
+            document.getElementById("profession").value.trim();
+
+
+        if (!nom || !prenom || !profession) {
+
+            message.textContent =
+                "Veuillez remplir tous les champs.";
+
+            return;
+        }
+
+
+        message.textContent =
+            "Enregistrement en cours...";
+
+
+        try {
+
+            const response = await fetch(
+                SUPABASE_URL + "/rest/v1/rpc/creer_demande",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "apikey": SUPABASE_KEY,
+                        "Authorization":
+                            "Bearer " + SUPABASE_KEY,
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        p_nom: nom,
+                        p_prenom: prenom,
+                        p_profession: profession
+                    })
+                }
+            );
+
+
+            if (!response.ok) {
+
+                const erreur =
+                    await response.text();
+
+                console.error(erreur);
+
+                message.textContent =
+                    "Erreur lors de l'enregistrement.";
+
+                return;
+            }
+
+
+            const reference =
+                await response.json();
+
+
+            if (!reference) {
+
+                message.textContent =
+                    "Référence introuvable.";
+
+                return;
+            }
+
+
+            localStorage.setItem(
+                "demandeReferenceETransfert",
+                String(reference)
+            );
+
+
+            message.textContent =
+                "Informations enregistrées avec succès.";
+
+
+            setTimeout(function() {
+
+                window.location.href =
+                    "age.html";
+
+            }, 500);
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            message.textContent =
+                "Impossible de contacter Supabase.";
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
