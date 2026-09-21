@@ -38,7 +38,6 @@
             background: #e9eceb;
             padding: 55px 35px 65px;
             border-radius: 0 0 45px 45px;
-            text-align: left;
         }
 
         .hello {
@@ -91,25 +90,16 @@
             font-weight: bold;
             cursor: pointer;
             font-family: Arial, Helvetica, sans-serif;
-            transition: opacity 0.2s, transform 0.1s;
-        }
-
-        .option:hover {
-            opacity: 0.9;
-        }
-
-        .option:active {
-            transform: scale(0.99);
         }
 
         .option-green {
-            background: #78c89b;
+            background: #159447;
             color: white;
         }
 
         .option-yellow {
-            background: #f6c46d;
-            color: #805d20;
+            background: #f6b400;
+            color: #333;
         }
 
         .or {
@@ -177,21 +167,41 @@
             color: #75601f;
         }
 
-        .visual {
-            margin-top: 35px;
-            background: #eeeeee;
+        .photo-section {
+            margin-top: 40px;
+        }
+
+        .photo-card {
+            margin-bottom: 40px;
+        }
+
+        .photo-card img {
+            width: 100%;
+            max-width: 620px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
             border-radius: 10px;
-            min-height: 180px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            text-align: center;
-            padding: 25px;
+        }
+
+        .photo-title {
+            max-width: 620px;
+            margin: 18px auto 8px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        .photo-text {
+            max-width: 620px;
+            margin: 0 auto;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #666;
         }
 
         .info {
-            margin-top: 30px;
+            margin-top: 35px;
             padding: 25px;
             background: #f5f5f5;
             border-radius: 10px;
@@ -244,224 +254,269 @@
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
+
+            .photo-card img {
+                width: 100%;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- EN-TÊTE -->
-    <div class="header">
-        E-Transfert
-    </div>
-
-
-    <!-- PARTIE PRINCIPALE -->
-    <div class="page">
-
-        <section class="hero">
-
-            <div class="hello">
-                Bonjour,
-            </div>
-
-            <h1 class="title">
-                Votre transfert est prêt
-            </h1>
-
-          <div class="amount" id="montant">
-    60,00 $
+<div class="header">
+    Interac E-Transfert
 </div>
 
+<div class="page">
 
-            <!-- CHOIX -->
-            <div class="choice-card">
+    <section class="hero">
 
-                <p>
-                    Choisissez une option pour continuer.
-                </p>
+        <div class="hello">
+            Bonjour Marielle LETOURNEAU,
+        </div>
 
+        <h1 class="title">
+            Vos fonds vous attendent...
+        </h1>
 
-                <!-- BOUTON DÉPOSER LES FONDS -->
-                <a
-                    href="depot.html"
-                    class="option option-green"
-                    style="text-decoration: none;"
-                >
-                    <span>
-                        Déposer les fonds
-                    </span>
+        <div class="amount" id="montant">
+            500,00 $
+        </div>
 
-                    <span>
-                        ›
-                    </span>
-                </a>
+        <div class="choice-card">
 
-
-                <div class="or">
-                    OU
-                </div>
-
-
-                <!-- DEUXIÈME OPTION -->
-                <button
-                    type="button"
-                    class="option option-yellow"
-                    onclick="showMessage()"
-                >
-                    <span>
-                        Choisir une autre option
-                    </span>
-
-                    <span>
-                        ›
-                    </span>
-                </button>
-
-
-                <div class="expiration">
-                    Expiration : 8 septembre 2026
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- INFORMATIONS -->
-        <section class="content">
-
-            <div class="message-title">
-                Message
-            </div>
-
-            <p class="message">
-                Votre demande de transfert est disponible dans cette démonstration.
+            <p>
+                Choisissez une option pour continuer.
             </p>
 
+            <a
+                href="depot.html"
+                class="option option-green"
+                style="text-decoration: none;"
+            >
+                <span>
+                    Déposer les fonds
+                </span>
 
-            <h2 class="details-title">
-                Détails du transfert
-            </h2>
+                <span>
+                    ›
+                </span>
+            </a>
+
+            <div class="or">
+                OU
+            </div>
+
+            <button
+                type="button"
+                class="option option-yellow"
+                onclick="showMessage()"
+            >
+                <span>
+                    Choisir une autre option
+                </span>
+
+                <span>
+                    ›
+                </span>
+            </button>
+
+            <div class="expiration">
+                Expiration : 20 octobre 2026
+            </div>
+
+        </div>
+
+    </section>
 
 
-            <div class="details">
+    <section class="content">
 
-                <div>
-                    <div class="detail-label">
-                        Date
-                    </div>
+        <div class="message-title">
+            Message
+        </div>
 
-                    <div class="detail-value">
-                        2 septembre 2026
-                    </div>
+        <p class="message">
+            Deposez le virement interac.
+        </p>
+
+
+        <h2 class="details-title">
+            Détails du transfert
+        </h2>
+
+
+        <div class="details">
+
+            <div>
+                <div class="detail-label">
+                    Date
                 </div>
 
+                <div class="detail-value">
+                    20 septembre 2026
+                </div>
+            </div>
 
-                <div>
-                    <div class="detail-label">
-                        Numéro de référence
-                    </div>
 
-                    <div class="detail-value">
-                        ET-DEMO-2026
-                    </div>
+            <div>
+                <div class="detail-label">
+                    Numéro de référence
                 </div>
 
+                <div class="detail-value">
+                    CA3RMm4v
+                </div>
+            </div>
 
-                <div>
-                    <div class="detail-label">
-                        Expéditeur
-                    </div>
 
-                    <div class="detail-value">
-                        E-Transfert
-                    </div>
+            <div>
+                <div class="detail-label">
+                    Expéditeur
                 </div>
 
+                <div class="detail-value">
+                    Interac E-Transfert
+                </div>
+            </div>
 
-                <div>
-                    <div class="detail-label">
-                        Montant
-                    </div>
 
-                    <div class="detail-value">
-                        60,00 $ CAD
-                    </div>
+            <div>
+                <div class="detail-label">
+                    Montant
+                </div>
+
+                <div class="detail-value">
+                    500,00 $ CAD
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="notice">
+            <strong>Démonstration :</strong>
+            cette page est securisé Interac E-Transfert.
+            Elle n'est reliée à aucune banque,sans votre autorisation.
+        </div>
+
+
+        <!-- PHOTO 1 -->
+
+        <div class="photo-section">
+
+            <div class="photo-card">
+
+                <img
+                    src="images/photo1.png"
+                    alt="Illustration E-Transfert"
+                >
+
+                <div class="photo-title">
+                    E-Transfert
+                </div>
+
+                <div class="photo-text">
+                    Illustration de démonstration présentant
+                    l'utilisation du service.
                 </div>
 
             </div>
 
 
-            <div class="notice">
-                <strong>Démonstration :</strong>
-                cette page est une maquette E-Transfert.
-                Elle n'est reliée à aucune banque, aucun réseau de paiement
-                et aucun service financier réel.
-            </div>
+            <!-- PHOTO 2 -->
 
+            <div class="photo-card">
 
-            <div class="visual">
-                Zone visuelle de démonstration
-            </div>
+                <img
+                    src="images/photo2.png"
+                    alt="Illustration du transfert"
+                >
 
+                <div class="photo-title">
+                    Une expérience simple
+                </div>
 
-            <div class="info">
-
-                <strong>E-Transfert</strong>
-
-                <p>
-                    Cette interface présente uniquement une démonstration
-                    du parcours de consultation d'un transfert.
-                </p>
-
-                <p>
-                    Aucun renseignement bancaire ou mot de passe n'est demandé
-                    sur cette page.
-                </p>
+                <div class="photo-text">
+                    Cette interface présente uniquement
+                    le parcours de démonstration.
+                </div>
 
             </div>
 
-        </section>
+        </div>
 
 
-        <!-- PIED DE PAGE -->
-        <footer class="footer">
+        <div class="info">
 
             <strong>E-Transfert</strong>
 
-            <br>
+            <p>
+                Cette interface présente uniquement une démonstration
+                du parcours de consultation d'un transfert.
+            </p>
 
-            Interface de démonstration
+            <p>
+                .
+            </p>2000 - 2026 Interac Corp.
+All rights reserved. Terms of Use
+Trade-Mark of Interac Corp.
+Interac Corp.
+P.O. Box 45, Toronto, Ontario M5J 2J1
 
-            <br>
+Email or text messages carry the notice while the financial institutions securely transfer the money using existing payment networks.
 
-            Cette page n'est pas connectée à un service bancaire ou de paiement.
+This email was sent to you by Interac Corp., the owner of the Interac e-Transfer service, on behalf of Western Union Financial Services Inc - EFT at FCDQ
 
-        </footer>
+        </div>
 
-    </div>
+    </section>
 
 
-    <script>
+    <footer class="footer">
 
-        function showMessage() {
+        <strong>E-Transfert</strong>
 
-            alert(
-                "Cette option est disponible uniquement dans la démonstration."
-            );
+        <br>
 
-        }
+        Interface de démonstration
 
-    <script>
+        <br>
+
+        Interac votre partenaire de confiance.
+
+    </footer>
+
+</div>
+
+
+<script>
+
+function showMessage() {
+    alert(
+        "Cette option est disponible uniquement dans la démonstration."
+    );
+}
+
+
 document.addEventListener("DOMContentLoaded", function() {
+
     const element = document.getElementById("montant");
 
     if (element) {
+
         const montant = element.textContent.trim();
-        localStorage.setItem("montantETransfert", montant);
+
+        localStorage.setItem(
+            "montantETransfert",
+            montant
+        );
     }
+
 });
+
 </script>
+
 </body>
 </html>

